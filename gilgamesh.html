@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gilgamesh - The Immortality Archive</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #08080a;
+  --bg-raised: #0f0f12;
+  --bg-hover: #16161a;
+  --text: #a8a4a0;
+  --text-dim: #55524e;
+  --text-bright: #ece8e1;
+  --red: #c0392b;
+  --red-dim: #7a2419;
+  --red-glow: rgba(192, 57, 43, 0.15);
+  --amber: #d4a24e;
+  --border: #1e1d20;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --body: 'Outfit', sans-serif;
+}
+
+html { background: var(--bg); color: var(--text); scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10000;
+}
+
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red-glow);
+  z-index: 9998;
+  width: 0%;
+}
+
+#entry-view {
+  min-height: 100vh;
+  padding: 6rem 2rem 4rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.top-nav a {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.top-nav a:hover { color: var(--red); }
+
+.entry-header { margin-bottom: 1.5rem; }
+
+.entry-year-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.entry-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  color: var(--text-bright);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.entry-oneliner {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--amber);
+}
+
+.fact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding: 1.25rem 0;
+  margin-bottom: 2.5rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.fact-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.fact-strip-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.fact-strip-value {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-bright);
+  letter-spacing: 0.02em;
+}
+
+.visual-break {
+  text-align: center;
+  padding: 2.5rem 0;
+  margin: 1rem 0;
+}
+
+.visual-break-number {
+  font-family: var(--display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  color: var(--text-bright);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.visual-break-caption {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── STANDALONE LINE ── */
+.standalone {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--text-bright);
+  text-align: center;
+  padding: 2rem 0;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.entry-content p {
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+  color: var(--text);
+  line-height: 1.85;
+}
+
+.entry-content p strong {
+  color: var(--text-bright);
+  font-weight: 400;
+}
+
+.entry-content .callout {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text-bright);
+  line-height: 1.8;
+  margin: 2.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--red-dim);
+}
+
+.entry-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.entry-nav a {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+  padding: 0.5rem 0;
+}
+
+.entry-nav a:hover { color: var(--red); }
+.entry-nav .disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.entry-fade-in { animation: fadeIn 0.6s ease forwards; }
+
+@media (max-width: 640px) {
+  .fact-strip { gap: 0.75rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="entry-view">
+  <nav class="top-nav">
+    <a href="index.html">← Home</a>
+    <a href="archive.html">Archive</a>
+  </nav>
+
+  <div class="entry-fade-in">
+    <div class="entry-header">
+      <div class="entry-year-label">~2100 BCE</div>
+      <h1 class="entry-title">Gilgamesh</h1>
+      <p class="entry-oneliner">The oldest surviving story in the world is about a man having a breakdown about mortality.</p>
+    </div>
+
+    <div class="fact-strip">
+      <div class="fact-strip-item">
+        <span class="fact-strip-label">Year</span>
+        <span class="fact-strip-value">~2100 BCE</span>
+      </div>
+      <div class="fact-strip-item">
+        <span class="fact-strip-label">Location</span>
+        <span class="fact-strip-value">Uruk, Mesopotamia</span>
+      </div>
+      <div class="fact-strip-item">
+        <span class="fact-strip-label">Method</span>
+        <span class="fact-strip-value">Youth-restoring plant</span>
+      </div>
+      <div class="fact-strip-item">
+        <span class="fact-strip-label">Outcome</span>
+        <span class="fact-strip-value">Lost it to a snake</span>
+      </div>
+    </div>
+
+    <div class="entry-content">
+      <p>The Epic of Gilgamesh is considered <strong>the oldest surviving work of fiction</strong>, based around a real king and dating to around 2100 BCE.</p>
+
+      <p>When accounts were found in 1872 it caused <strong>a genuine crisis of faith in Victorian England</strong> with the implication that the flood story predates Genesis, suggesting the bible borrowed from an older source.</p>
+
+      <p>Gilgamesh was part god, impossibly strong and a tyrant. The oldest surviving story in the world is about <strong>a man having a breakdown about mortality.</strong></p>
+
+      <p>Gilgamesh and Enkidu become friends and fight together including a bull of heaven which offended the gods enough to demand a death in return.</p>
+
+      <p>The gods punish them for this act by <strong>killing Enkidu which takes twelve days.</strong></p>
+
+      <p>Gilgamesh watches.</p>
+
+      <div class="visual-break">
+        <div class="visual-break-number">4,100</div>
+        <div class="visual-break-caption">years ago</div>
+      </div>
+
+      <p>Gilgamesh can't handle it, he <strong>leaves his life behind</strong> to travel to the end of the world to find Utnapishtim, the only man to ever be granted immortality. Utnapishtim tells Gilgamesh that this was a one-off, that he survived a great flood and when the gods found him, they made him immortal as compensation.</p>
+
+      <p>As a last hope, Gilgamesh retrieves a plant from the bottom of the seas that restores youth but <strong>a snake eats it while he's asleep</strong> and so Gilgamesh goes home and dies.</p>
+
+      <p>It's as simple as that; <strong>Gilgamesh wanted to live for ever and he didn't</strong>, that's it. Seeing his best friend die slowly broke something in him; the primal panic of realising death is coming for him too.</p>
+
+      <div class="standalone">Enkidu is his future if he doesn't act.</div>
+
+      <p>Every story that comes after is essentially <strong>a footnote to Gilgamesh</strong> and no one has come up with a better response than refusing to accept it, failing to prevent it and going home anyway.</p>
+    </div>
+
+    <div class="entry-nav">
+      <span class="disabled">← Previous</span>
+      <a href="qin-shi-huang.html">Next →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('progress-bar');
+  const winHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (winHeight <= 0) return;
+  bar.style.width = Math.min(100, (window.scrollY / winHeight) * 100) + '%';
+});
+</script>
+
+</body>
+</html>
