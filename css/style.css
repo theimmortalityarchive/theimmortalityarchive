@@ -428,6 +428,8 @@ body::after {
 .entry-content img {
   max-width: 100%;
   height: auto;
+  max-height: 360px;
+  object-fit: cover;
   display: block;
   margin: 0 auto 2rem auto;
 }
