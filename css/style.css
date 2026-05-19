@@ -425,6 +425,13 @@ body::after {
   font-weight: 400;
 }
 
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 2rem auto;
+}
+
 .entry-content .callout {
   font-family: var(--display);
   font-style: italic;
