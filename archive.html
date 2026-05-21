@@ -4,22 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Archive - The Immortality Archive</title>
-
 <link rel="icon" type="image/png" href="favicon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
 <div id="all-entries">
   <a href="index.html" class="entry-back">← Back</a>
   <h2 class="all-entries-title">The Archive</h2>
   <p class="all-entries-count" id="entry-count"></p>
   <div id="entries-list"></div>
 </div>
-
 <script>
 // ══════════════════════════════════════
 // ARCHIVE DATA & DIRECT LINKS
@@ -38,19 +34,23 @@ const entries = [
     oneliner: 'The most powerful man alive drank mercury because someone told him it was the key to eternal life.'
   },
   {
+    file: 'posts/luigicornaro.html',
+    year: '1566',
+    title: 'Luigi Cornaro',
+    oneliner: 'A dying aristocrat stripped his diet to almost nothing and lived to nearly 100, then wrote books telling everyone else to do the same.'
+  },
+  {
     file: 'posts/jamesbedford.html',
     year: '1967',
     title: 'James Bedford',
     oneliner: 'A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up.'
   }
 ];
-
 // ══════════════════════════════════════
 // RENDER DIRECTORY
 // ══════════════════════════════════════
 const list = document.getElementById('entries-list');
 document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
-
 list.innerHTML = entries.map(e => `
   <div class="entry-card" onclick="window.location.href='${e.file}'">
     <div class="entry-card-year">${e.year}</div>
@@ -61,6 +61,5 @@ list.innerHTML = entries.map(e => `
   </div>
 `).join('');
 </script>
-
 </body>
 </html>
