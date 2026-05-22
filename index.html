@@ -36,6 +36,8 @@
 </div>
 
 <section id="landing">
+
+  <!-- ── LOGO ── -->
   <div class="site-logo" onclick="handleLogoClick()" title="The Immortality Archive Index">
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M25 10H10V25" stroke="var(--border)" stroke-width="2"/>
@@ -48,23 +50,46 @@
     </svg>
   </div>
 
+  <!-- ── TITLE ── -->
   <p class="landing-tagline">5,000 years of trying</p>
   <h1 class="landing-title">The Immortality <em>Archive</em></h1>
   <p class="landing-sub">Humans have been trying to defeat death for almost as long as we've been alive. None of them have been successful. These are their stories</p>
 
+  <!-- ── CTAs ── -->
+  <div class="landing-ctas">
+    <button id="shuffle-btn" onclick="showRandom()">
+      <svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 11V9a4 4 0 014-4h10M7 21l-4-4 4-4m14 4v2a4 4 0 01-4 4H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Show me one
+    </button>
+    <button class="browse-btn" onclick="window.location.href='archive.html'">or browse all entries</button>
+  </div>
+
+  <!-- ── DEATH COUNTER ── -->
   <div class="death-counter">
     <div class="death-counter-number" id="death-count">0</div>
     <div class="death-counter-label">people have died since you opened this page</div>
   </div>
 
-  <button id="shuffle-btn" onclick="showRandom()">
-    <svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 11V9a4 4 0 014-4h10M7 21l-4-4 4-4m14 4v2a4 4 0 01-4 4H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Show me one
-  </button>
-
-  <div style="margin-top: 2rem; opacity: 0; animation: fadeIn 1s ease 1.7s forwards;">
-    <button onclick="window.location.href='archive.html'" style="background:none;border:none;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:color 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">or browse all entries</button>
+  <!-- ── STATIC STATS ── -->
+  <div class="landing-stats">
+    <div class="landing-stat">
+      <div class="landing-stat-number">~109,000,000,000</div>
+      <div class="landing-stat-label">humans have ever lived</div>
+    </div>
+    <div class="landing-stat">
+      <div class="landing-stat-number">93%</div>
+      <div class="landing-stat-label">of them are dead</div>
+    </div>
+    <div class="landing-stat">
+      <div class="landing-stat-number">122 years, 164 days</div>
+      <div class="landing-stat-label">the longest anyone has managed</div>
+    </div>
+    <div class="landing-stat">
+      <div class="landing-stat-number">100%</div>
+      <div class="landing-stat-label">mortality rate — it has never moved</div>
+    </div>
   </div>
+
 </section>
 
 <script>
@@ -136,7 +161,6 @@ function showRandom() {
     'posts/qinshihuang.html',
     'posts/jamesbedford.html',
     'posts/luigicornaro.html'
-
   ];
   
   const randomIndex = Math.floor(Math.random() * entries.length);
