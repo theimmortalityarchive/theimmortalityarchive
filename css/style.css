@@ -1,8 +1,8 @@
-/* ══════════════════════════════════════
-   THE IMMORTALITY ARCHIVE — GLOBAL CSS
-   ══════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   THE IMMORTALITY ARCHIVE â€” GLOBAL CSS
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ── RESET & VARIABLES ── */
+/* â”€â”€ RESET & VARIABLES â”€â”€ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -33,7 +33,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── GRAIN OVERLAY ── */
+/* â”€â”€ GRAIN OVERLAY â”€â”€ */
 body::after {
   content: '';
   position: fixed;
@@ -43,26 +43,32 @@ body::after {
   z-index: 10000;
 }
 
-/* ── ANIMATIONS ── */
+/* â”€â”€ ANIMATIONS â”€â”€ */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 
-/* ══════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    INDEX / LANDING PAGE
-   ══════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ── LOGO BRANDING ── */
+/* â”€â”€ LOGO BRANDING â”€â”€ */
 .site-logo {
   margin-bottom: 2rem;
-  display: inline-block;
+  display: inline-grid;
+  place-items: center;
   cursor: pointer;
   opacity: 0;
   animation: fadeIn 1s ease 0.1s forwards;
   user-select: none;
   -webkit-user-drag: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  appearance: none;
+  color: inherit;
 }
 
 .site-logo svg {
@@ -71,11 +77,16 @@ body::after {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.site-logo:focus-visible {
+  outline: 1px solid var(--red);
+  outline-offset: 6px;
+}
+
 .site-logo:hover svg {
   transform: rotate(180deg);
 }
 
-/* ── DRAMATIC TRANSMISSION OVERLAY ── */
+/* â”€â”€ DRAMATIC TRANSMISSION OVERLAY â”€â”€ */
 #glitch-overlay {
   position: fixed;
   inset: 0;
@@ -93,7 +104,7 @@ body::after {
   display: none;
 }
 
-/* ── LANDING PAGE ── */
+/* â”€â”€ LANDING PAGE â”€â”€ */
 #landing {
   min-height: 100vh;
   display: flex;
@@ -137,11 +148,12 @@ body::after {
   color: var(--text-dim);
   max-width: 460px;
   margin-bottom: 3rem;
+  line-height: 1.85;
   opacity: 0;
   animation: fadeIn 1s ease 0.9s forwards;
 }
 
-/* ── DEATH COUNTER ── */
+/* â”€â”€ DEATH COUNTER â”€â”€ */
 .death-counter {
   margin-bottom: 4.5rem;
   opacity: 0;
@@ -167,7 +179,7 @@ body::after {
   line-height: 1.5;
 }
 
-/* ── SHUFFLE BUTTON ── */
+/* â”€â”€ SHUFFLE BUTTON â”€â”€ */
 #shuffle-btn {
   display: inline-flex;
   align-items: center;
@@ -198,7 +210,7 @@ body::after {
   fill: currentColor;
 }
 
-/* ── CTA GROUP ── */
+/* â”€â”€ CTA GROUP â”€â”€ */
 .landing-ctas {
   display: flex;
   flex-direction: column;
@@ -231,7 +243,7 @@ body::after {
   border-color: var(--text-dim);
 }
 
-/* ── STATIC STATS ── */
+/* â”€â”€ STATIC STATS â”€â”€ */
 .landing-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -247,13 +259,10 @@ body::after {
   padding: 0;
 }
 
-.landing-stat-divider {
-  display: none;
-}
 
 .landing-stat-number {
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-bright);
   letter-spacing: -0.01em;
@@ -263,17 +272,17 @@ body::after {
 
 .landing-stat-label {
   font-family: var(--mono);
-  font-size: 0.45rem;
+  font-size: 0.5rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-dim);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 
-/* ══════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ARCHIVE PAGE
-   ══════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 #all-entries {
   max-width: 900px;
@@ -322,10 +331,14 @@ body::after {
   padding: 2rem 0;
   border-bottom: 1px solid var(--border);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
 }
 
-.entry-card:hover { padding-left: 1rem; }
+.entry-card:hover {
+  transform: translateX(0.5rem);
+}
+
 .entry-card:hover .entry-card-title { color: var(--red); }
 
 .entry-card-year {
@@ -350,9 +363,9 @@ body::after {
 }
 
 
-/* ══════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    POST / ENTRY PAGES
-   ══════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 #progress-bar {
   position: fixed;
@@ -545,20 +558,59 @@ body::after {
 .entry-fade-in { animation: fadeIn 0.6s ease forwards; }
 
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════ */
+
 
 @media (max-width: 640px) {
   .death-counter-number {
     font-size: 1.2rem;
   }
+
   .entry-card {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
+
+  .entry-card:hover {
+    transform: none;
+  }
+
   .fact-strip { gap: 0.75rem 1.5rem; }
- .landing-stats {
+
+  .landing-stats {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+
+  .landing-stat-label {
+    font-size: 0.52rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .site-logo,
+  .landing-tagline,
+  .landing-title,
+  .landing-sub,
+  .landing-ctas,
+  .death-counter,
+  #shuffle-btn,
+  .landing-stats {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  body::after {
+    opacity: 0.5;
+  }
+}
