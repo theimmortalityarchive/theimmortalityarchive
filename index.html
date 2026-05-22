@@ -38,7 +38,7 @@
 <section id="landing">
 
   <!-- LOGO -->
-  <div class="site-logo" onclick="handleLogoClick()" title="The Immortality Archive Index">
+  <button class="site-logo" type="button" onclick="handleLogoClick()" aria-label="Return to the top of the page" title="The Immortality Archive Index">
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M25 10H10V25" stroke="var(--border)" stroke-width="2"/>
       <path d="M75 10H90V25" stroke="var(--border)" stroke-width="2"/>
@@ -48,7 +48,7 @@
       <line x1="50" y1="12" x2="50" y2="88" stroke="var(--bg)" stroke-width="3"/>
       <line x1="50" y1="15" x2="50" y2="85" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 4"/>
     </svg>
-  </div>
+  </button>
 
   <!-- TITLE -->
   <p class="landing-tagline">5,000 years of trying</p>
@@ -76,17 +76,14 @@
       <div class="landing-stat-number">~109,000,000,000</div>
       <div class="landing-stat-label">humans have ever lived</div>
     </div>
-    <div class="landing-stat-divider"></div>
     <div class="landing-stat">
       <div class="landing-stat-number">93%</div>
       <div class="landing-stat-label">of them are dead</div>
     </div>
-    <div class="landing-stat-divider"></div>
     <div class="landing-stat">
       <div class="landing-stat-number">122 yrs, 164 days</div>
       <div class="landing-stat-label">the longest anyone has managed</div>
     </div>
-    <div class="landing-stat-divider"></div>
     <div class="landing-stat">
       <div class="landing-stat-number">100%</div>
       <div class="landing-stat-label">mortality rate — it has never moved</div>
@@ -104,10 +101,10 @@ function updateDeathCount() {
   const elapsed = (Date.now() - pageOpenTime) / 1000;
   const deaths = Math.floor(elapsed * DEATHS_PER_SECOND);
   deathCountEl.textContent = deaths.toLocaleString();
-  requestAnimationFrame(updateDeathCount);
 }
 
-requestAnimationFrame(updateDeathCount);
+updateDeathCount();
+setInterval(updateDeathCount, 1000);
 
 let logoClicks = 0;
 let clickTimeout;
