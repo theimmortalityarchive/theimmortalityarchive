@@ -143,9 +143,9 @@ body::after {
 
 /* ── DEATH COUNTER ── */
 .death-counter {
-  margin-bottom: 3rem;
+  margin-bottom: 4.5rem;
   opacity: 0;
-  animation: fadeIn 1.2s ease 1.1s forwards;
+  animation: fadeIn 1.2s ease 1.5s forwards;
 }
 
 .death-counter-number {
@@ -203,63 +203,71 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 3.5rem;
+  gap: 1.25rem;
+  margin-bottom: 4.5rem;
   opacity: 0;
   animation: fadeIn 1s ease 1.2s forwards;
 }
 
-.browse-btn {
-  background: none;
-  border: none;
+.browse-link {
   font-family: var(--mono);
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-dim);
-  cursor: pointer;
-  transition: color 0.3s;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.2rem;
+  transition: color 0.3s, border-color 0.3s;
 }
 
-.browse-btn:hover {
+.browse-link:hover {
   color: var(--text);
+  border-color: var(--text-dim);
 }
 
 /* ── STATIC STATS ── */
 .landing-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  max-width: 480px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 640px;
   width: 100%;
-  border: 1px solid var(--border);
-  background: var(--border);
   opacity: 0;
   animation: fadeIn 1s ease 1.8s forwards;
 }
 
 .landing-stat {
-  background: var(--bg);
-  padding: 1.5rem 1.25rem;
+  flex: 1;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.landing-stat-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  flex-shrink: 0;
 }
 
 .landing-stat-number {
   font-family: var(--mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-bright);
   letter-spacing: -0.01em;
   line-height: 1;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .landing-stat-label {
   font-family: var(--mono);
-  font-size: 0.5rem;
+  font-size: 0.45rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-dim);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 
@@ -551,6 +559,15 @@ body::after {
   }
   .fact-strip { gap: 0.75rem 1.5rem; }
   .landing-stats {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .landing-stat {
+    padding: 1.25rem 0;
+  }
+  .landing-stat-divider {
+    width: 40px;
+    height: 1px;
   }
 }
