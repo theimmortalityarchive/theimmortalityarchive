@@ -1,8 +1,8 @@
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   THE IMMORTALITY ARCHIVE â€” GLOBAL CSS
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ====================================
+   THE IMMORTALITY ARCHIVE — GLOBAL CSS
+   ==================================== */
 
-/* â”€â”€ RESET & VARIABLES â”€â”€ */
+/* ── RESET & VARIABLES ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -33,7 +33,7 @@ body {
   overflow-x: hidden;
 }
 
-/* â”€â”€ GRAIN OVERLAY â”€â”€ */
+/* ── GRAIN OVERLAY ── */
 body::after {
   content: '';
   position: fixed;
@@ -43,18 +43,18 @@ body::after {
   z-index: 10000;
 }
 
-/* â”€â”€ ANIMATIONS â”€â”€ */
+/* ── ANIMATIONS ── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ====================================
    INDEX / LANDING PAGE
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ==================================== */
 
-/* â”€â”€ LOGO BRANDING â”€â”€ */
+/* ── LOGO BRANDING ── */
 .site-logo {
   margin-bottom: 2rem;
   display: inline-grid;
@@ -86,7 +86,7 @@ body::after {
   transform: rotate(180deg);
 }
 
-/* â”€â”€ DRAMATIC TRANSMISSION OVERLAY â”€â”€ */
+/* ── DRAMATIC TRANSMISSION OVERLAY ── */
 #glitch-overlay {
   position: fixed;
   inset: 0;
@@ -104,7 +104,7 @@ body::after {
   display: none;
 }
 
-/* â”€â”€ LANDING PAGE â”€â”€ */
+/* ── LANDING PAGE ── */
 #landing {
   min-height: 100vh;
   display: flex;
@@ -153,7 +153,7 @@ body::after {
   animation: fadeIn 1s ease 0.9s forwards;
 }
 
-/* â”€â”€ DEATH COUNTER â”€â”€ */
+/* ── DEATH COUNTER ── */
 .death-counter {
   margin-bottom: 4.5rem;
   opacity: 0;
@@ -179,7 +179,7 @@ body::after {
   line-height: 1.5;
 }
 
-/* â”€â”€ SHUFFLE BUTTON â”€â”€ */
+/* ── SHUFFLE BUTTON ── */
 #shuffle-btn {
   display: inline-flex;
   align-items: center;
@@ -210,7 +210,7 @@ body::after {
   fill: currentColor;
 }
 
-/* â”€â”€ CTA GROUP â”€â”€ */
+/* ── CTA GROUP ── */
 .landing-ctas {
   display: flex;
   flex-direction: column;
@@ -243,7 +243,7 @@ body::after {
   border-color: var(--text-dim);
 }
 
-/* â”€â”€ STATIC STATS â”€â”€ */
+/* ── STATIC STATS ── */
 .landing-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -258,7 +258,6 @@ body::after {
   text-align: center;
   padding: 0;
 }
-
 
 .landing-stat-number {
   font-family: var(--mono);
@@ -280,9 +279,9 @@ body::after {
 }
 
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ====================================
    ARCHIVE PAGE
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ==================================== */
 
 #all-entries {
   max-width: 900px;
@@ -363,9 +362,9 @@ body::after {
 }
 
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ====================================
    POST / ENTRY PAGES
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ==================================== */
 
 #progress-bar {
   position: fixed;
@@ -550,6 +549,7 @@ body::after {
 }
 
 .entry-nav a:hover { color: var(--red); }
+
 .entry-nav .disabled {
   opacity: 0.2;
   pointer-events: none;
@@ -558,7 +558,9 @@ body::after {
 .entry-fade-in { animation: fadeIn 0.6s ease forwards; }
 
 
-
+/* ====================================
+   RESPONSIVE
+   ==================================== */
 
 @media (max-width: 640px) {
   .death-counter-number {
