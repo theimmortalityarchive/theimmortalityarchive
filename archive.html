@@ -17,49 +17,21 @@
   <div id="entries-list"></div>
 </div>
 <script>
-// ══════════════════════════════════════
-// ARCHIVE DATA & DIRECT LINKS
-// ══════════════════════════════════════
-const entries = [
-  {
-    file: 'posts/gilgamesh.html',
-    year: '~2700 BC',
-    title: 'Gilgamesh',
-    oneliner: 'The first human to be terrified of dying and to write it down.'
-  },
-  {
-    file: 'posts/qinshihuang.html',
-    year: '210 BC',
-    title: 'Qin Shi Huang',
-    oneliner: 'The most powerful man alive drank mercury because someone told him it was the key to eternal life.'
-  },
-  {
-    file: 'posts/luigicornaro.html',
-    year: '1566',
-    title: 'Luigi Cornaro',
-    oneliner: 'A dying aristocrat stripped his diet to almost nothing and lived to nearly 100, then wrote books telling everyone else to do the same.'
-  },
-  {
-    file: 'posts/jamesbedford.html',
-    year: '1967',
-    title: 'James Bedford',
-    oneliner: 'A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up.'
-  }
-];
-// ══════════════════════════════════════
-// RENDER DIRECTORY
-// ══════════════════════════════════════
-const list = document.getElementById('entries-list');
-document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
-list.innerHTML = entries.map(e => `
-  <div class="entry-card" onclick="window.location.href='${e.file}'">
-    <div class="entry-card-year">${e.year}</div>
-    <div>
-      <div class="entry-card-title">${e.title}</div>
-      <div class="entry-card-desc">${e.oneliner}</div>
-    </div>
-  </div>
-`).join('');
+fetch('entries.json')
+  .then(r => r.json())
+  .then(entries => {
+    const list = document.getElementById('entries-list');
+    document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
+    list.innerHTML = entries.map(e => `
+      <div class="entry-card" onclick="window.location.href='${e.file}'">
+        <div class="entry-card-year">${e.year}</div>
+        <div>
+          <div class="entry-card-title">${e.title}</div>
+          <div class="entry-card-desc">${e.oneliner}</div>
+        </div>
+      </div>
+    `).join('');
+  });
 </script>
 </body>
 </html>
