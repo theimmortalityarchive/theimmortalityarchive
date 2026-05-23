@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - The Immortality Archive</title>
+<meta name="description" content="What The Immortality Archive is, what earns an entry, and why any of it matters.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://theimmortalityarchive.com/about.html">
+<link rel="icon" type="image/png" href="favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="About - The Immortality Archive">
+<meta property="og:description" content="What The Immortality Archive is, what earns an entry, and why any of it matters.">
+<meta property="og:url" content="https://theimmortalityarchive.com/about.html">
+<meta property="og:site_name" content="The Immortality Archive">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About - The Immortality Archive">
+<meta name="twitter:description" content="What The Immortality Archive is, what earns an entry, and why any of it matters.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.about-heading {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  color: var(--text-bright);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+}
+.submission-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.submission-section p {
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+  color: var(--text);
+  line-height: 1.85;
+}
+.email-link {
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red-dim);
+  padding-bottom: 0.1rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.email-link:hover {
+  color: var(--text-bright);
+  border-color: var(--text-bright);
+}
+</style>
+</head>
+<body>
+
+<div id="entry-view">
+  <nav class="top-nav">
+    <a href="index.html">← Home</a>
+    <a href="archive.html">Archive</a>
+  </nav>
+
+  <div class="entry-fade-in">
+    <div class="entry-header">
+      <h1 class="entry-title" style="color: var(--red);">About</h1>
+    </div>
+
+    <div class="entry-content">
+
+      <h2 class="about-heading">Why does this exist?</h2>
+
+      <p>This is a curated record of what happens when humans decide that one rule which applies to all of life doesn't apply to them. Noble attempts, delusional experiments and everything in between.</p>
+
+      <h2 class="about-heading">How entries are chosen</h2>
+
+      <p>Did this person attempt or claim they could beat death? They're included. I also add just a few mythological stories here and there because they contribute in some way to the same idea. Whether or not these people were successful is irrelevant.</p>
+
+      <h2 class="about-heading">Why archive failure?</h2>
+
+      <p>Because nobody has won, that alone makes the 'hunt' worth documenting. Every single era, continent and group have contributed in exploring death, all with the same result.</p>
+
+      <h2 class="about-heading">Will this archive ever end?</h2>
+
+      <p>The archive will end when immortality is obtained but even then, these stories don't stop mattering. Five thousand years of failure doesn't become irrelevant just because someone got lucky.</p>
+
+      <div class="submission-section">
+        <h2 class="about-heading" style="margin-top: 0;">Got a submission?</h2>
+
+        <p>If you know someone who belongs in this archive, email me at <a class="email-link" id="contact-link" href="#"><span id="email-text"></span></a>. I'll do my best to get back to everyone.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var u = 'Immortal';
+  var s = 'submission';
+  var d = 'proton';
+  var t = 'me';
+  var addr = u + s + '@' + d + '.' + t;
+  var el = document.getElementById('contact-link');
+  var txt = document.getElementById('email-text');
+  if (el) el.href = 'mai' + 'lto:' + addr;
+  if (txt) txt.textContent = addr;
+})();
+</script>
+
+</body>
+</html>
