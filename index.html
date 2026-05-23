@@ -139,14 +139,12 @@ function executeDramaticTransmission() {
 }
 
 function showRandom() {
-  const entries = [
-    'posts/gilgamesh.html',
-    'posts/qinshihuang.html',
-    'posts/jamesbedford.html',
-    'posts/luigicornaro.html'
-  ];
-  const randomIndex = Math.floor(Math.random() * entries.length);
-  window.location.href = entries[randomIndex];
+  fetch('entries.json')
+    .then(r => r.json())
+    .then(entries => {
+      const randomIndex = Math.floor(Math.random() * entries.length);
+      window.location.href = entries[randomIndex].file;
+    });
 }
 </script>
 
