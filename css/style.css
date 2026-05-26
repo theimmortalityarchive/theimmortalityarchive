@@ -354,6 +354,51 @@ body::after {
   margin-bottom: 3rem;
 }
 
+/* ── CENTURY FILTER ── */
+.century-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1.5rem 0 0.5rem;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.century-btn {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+  white-space: nowrap;
+}
+
+.century-btn:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.century-btn.active {
+  color: var(--red);
+  border-color: var(--red-dim);
+  background: var(--red-glow);
+}
+
+.filter-empty {
+  display: none;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  padding: 3rem 0;
+  text-align: center;
+}
+
 .entry-card {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -616,6 +661,15 @@ body::after {
 
   .landing-stat-label {
     font-size: 0.52rem;
+  }
+
+  .century-filter {
+    gap: 0.35rem;
+  }
+
+  .century-btn {
+    font-size: 0.55rem;
+    padding: 0.4rem 0.7rem;
   }
 }
 
