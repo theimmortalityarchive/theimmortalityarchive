@@ -11,6 +11,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .era-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.75rem 0 1.25rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .era-divider:first-child {
+    margin-top: 0;
+  }
+  .era-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.3;
+  }
+</style>
 </head>
 <body>
 <div id="all-entries">
@@ -29,15 +53,45 @@ fetch('entries.json')
 
     document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
 
-    list.innerHTML = entries.map(e => `
-      <div class="entry-card" onclick="window.location.href='${e.file}'">
-        <div class="entry-card-year">${e.year}</div>
-        <div>
-          <div class="entry-card-title">${e.title}</div>
-          <div class="entry-card-desc">${e.oneliner}</div>
-        </div>
-      </div>
-    `).join('');
+    // Turn a display year ("~2700 BC", "1907") into a sortable number
+    function parseYear(yearStr) {
+      const s = yearStr.replace('~', '').trim();
+      if (s.toUpperCase().includes('BC')) return -Math.abs(parseInt(s));
+      return parseInt(s);
+    }
+
+    // Map a numeric year to an era label
+    function getEra(y) {
+      if (y < 500) return 'Antiquity';
+      if (y < 1400) return 'Medieval';
+      if (y < 1600) return 'Renaissance';
+      if (y < 1800) return 'Enlightenment';
+      return 'Modern';
+    }
+
+    // Sort chronologically so dividers always come out in order
+    const sorted = entries
+      .map(e => ({ ...e, numYear: parseYear(e.year) }))
+      .sort((a, b) => a.numYear - b.numYear);
+
+    let currentEra = null;
+    list.innerHTML = sorted.map(e => {
+      const era = getEra(e.numYear);
+      let block = '';
+      if (era !== currentEra) {
+        currentEra = era;
+        block += `<div class="era-divider"><span>${era}</span></div>`;
+      }
+      block += `
+        <div class="entry-card" onclick="window.location.href='${e.file}'">
+          <div class="entry-card-year">${e.year}</div>
+          <div>
+            <div class="entry-card-title">${e.title}</div>
+            <div class="entry-card-desc">${e.oneliner}</div>
+          </div>
+        </div>`;
+      return block;
+    }).join('');
   });
 </script>
 </body>
