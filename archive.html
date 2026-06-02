@@ -19,106 +19,25 @@
   <p class="landing-sub" style="margin-bottom: 0.3rem; max-width: none; opacity: 1; animation: none;">Every documented attempt to escape death, all in one place.</p>
   <p class="landing-sub" id="entry-count" style="max-width: none; opacity: 1; animation: none;"></p>
 
-  <div class="century-filter" id="century-filter"></div>
-
   <div id="entries-list"></div>
-  <p class="filter-empty" id="filter-empty">No entries in this period yet.</p>
 </div>
 <script>
 fetch('entries.json')
   .then(r => r.json())
   .then(entries => {
     const list = document.getElementById('entries-list');
-    const filterBar = document.getElementById('century-filter');
-    const emptyMsg = document.getElementById('filter-empty');
 
     document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
 
-    // Parse numeric year from display year string
-    function parseYear(yearStr) {
-      const s = yearStr.replace('~', '').trim();
-      if (s.toUpperCase().includes('BC')) {
-        return -Math.abs(parseInt(s));
-      }
-      return parseInt(s);
-    }
-
-    // Get century label from numeric year
-    function getCentury(numYear) {
-      if (numYear <= -1000) return 'Ancient';
-      if (numYear < 0) return Math.ceil(Math.abs(numYear) / 100) + 'th c. BC';
-      if (numYear < 100) return '1st c.';
-      const c = Math.ceil(numYear / 100);
-      const suffix = c === 2 ? 'nd' : c === 3 ? 'rd' : 'th';
-      return c + suffix + ' c.';
-    }
-
-    // Build century data for each entry
-    const enriched = entries.map(e => ({
-      ...e,
-      numYear: parseYear(e.year),
-      century: getCentury(parseYear(e.year))
-    }));
-
-    // Get unique centuries in chronological order
-    const centuryOrder = [];
-    const seen = new Set();
-    enriched
-      .slice()
-      .sort((a, b) => a.numYear - b.numYear)
-      .forEach(e => {
-        if (!seen.has(e.century)) {
-          seen.add(e.century);
-          centuryOrder.push(e.century);
-        }
-      });
-
-    // Render filter buttons
-    filterBar.innerHTML =
-      `<button class="century-btn active" data-century="all">All</button>` +
-      centuryOrder.map(c =>
-        `<button class="century-btn" data-century="${c}">${c}</button>`
-      ).join('');
-
-    // Render all cards
-    function renderCards(filtered) {
-      list.innerHTML = filtered.map(e => `
-        <div class="entry-card" onclick="window.location.href='${e.file}'">
-          <div class="entry-card-year">${e.year}</div>
-          <div>
-            <div class="entry-card-title">${e.title}</div>
-            <div class="entry-card-desc">${e.oneliner}</div>
-          </div>
+    list.innerHTML = entries.map(e => `
+      <div class="entry-card" onclick="window.location.href='${e.file}'">
+        <div class="entry-card-year">${e.year}</div>
+        <div>
+          <div class="entry-card-title">${e.title}</div>
+          <div class="entry-card-desc">${e.oneliner}</div>
         </div>
-      `).join('');
-      emptyMsg.style.display = filtered.length === 0 ? 'block' : 'none';
-    }
-
-    renderCards(enriched);
-
-    // Filter logic
-    let activeCentury = 'all';
-
-    filterBar.addEventListener('click', e => {
-      const btn = e.target.closest('.century-btn');
-      if (!btn) return;
-
-      filterBar.querySelectorAll('.century-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      activeCentury = btn.dataset.century;
-
-      const filtered = activeCentury === 'all'
-        ? enriched
-        : enriched.filter(e => e.century === activeCentury);
-
-      // Update count
-      document.getElementById('entry-count').textContent = activeCentury === 'all'
-        ? `${entries.length} stories so far`
-        : `${filtered.length} ${filtered.length === 1 ? 'story' : 'stories'} in the ${activeCentury}`;
-
-      renderCards(filtered);
-    });
+      </div>
+    `).join('');
   });
 </script>
 </body>
