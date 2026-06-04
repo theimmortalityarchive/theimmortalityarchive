@@ -1,3 +1,4 @@
+[
   {
     "file": "posts/gilgamesh.html",
     "year": "~2700 BC",
@@ -23,6 +24,12 @@
     "oneliner": "He wrote humanity's case for immortality while hiding from a death warrant. Two days after being caught, he was dead."
   },
   {
+    "file": "posts/brownsequard.html",
+    "year": "1889",
+    "title": "Charles-Édouard Brown-Séquard",
+    "oneliner": "One of the founders of endocrinology injected himself with animal testicles to feel young again. It was placebo."
+  },
+  {
     "file": "posts/eliemetchnikoff.html",
     "year": "1907",
     "title": "Elie Metchnikoff",
@@ -40,4 +47,4 @@
     "title": "James Bedford",
     "oneliner": "A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up."
   }
-]"
+]
