@@ -5,11 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Immortality Archive</title>
 
-<link rel="icon" type="image/png" href="../favicon.png">
-  
+<link rel="icon" type="image/png" href="favicon.png">
+
 <meta name="description" content="5,000 years of humans refusing to accept death, and failing. Every myth, method, and delusion from Gilgamesh to cryonics, archived in one place">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://theimmortalityarchive.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Immortality Archive">
+<meta property="og:description" content="5,000 years of humans refusing to accept death, and failing. Every myth, method, and delusion from Gilgamesh to cryonics.">
+<meta property="og:url" content="https://theimmortalityarchive.com/">
+<meta property="og:site_name" content="The Immortality Archive">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Immortality Archive">
+<meta name="twitter:description" content="5,000 years of humans refusing to accept death, and failing.">
 
 <script type="application/ld+json">
 {
@@ -25,7 +35,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -35,15 +45,14 @@
   </svg>
 </div>
 
+<!-- ═══════════ HERO ═══════════ -->
 <section id="landing">
 
-  <!-- TOP NAV -->
   <nav class="landing-nav">
     <a href="about.html">about</a>
     <a href="wherearewenow.html">where are we now</a>
   </nav>
 
-  <!-- LOGO -->
   <button class="site-logo" type="button" onclick="handleLogoClick()" aria-label="Return to the top of the page" title="The Immortality Archive Index">
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M25 10H10V25" stroke="var(--border)" stroke-width="2"/>
@@ -56,12 +65,10 @@
     </svg>
   </button>
 
-  <!-- TITLE -->
   <p class="landing-tagline">5,000 years of trying</p>
   <h1 class="landing-title">The Immortality <em>Archive</em></h1>
   <p class="landing-sub">Humans have been trying to defeat death for almost as long as we've been alive. None of them have been successful. These are their stories</p>
 
-  <!-- CTAs -->
   <div class="landing-ctas">
     <button id="shuffle-btn" onclick="showRandom()">
       <svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 11V9a4 4 0 014-4h10M7 21l-4-4 4-4m14 4v2a4 4 0 01-4 4H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -70,13 +77,98 @@
     <a class="browse-link" href="archive.html">or browse all entries</a>
   </div>
 
-  <!-- DEATH COUNTER -->
   <div class="death-counter">
     <div class="death-counter-number" id="death-count">0</div>
     <div class="death-counter-label">people have died since you opened this page</div>
   </div>
 
-  <!-- STATIC STATS -->
+</section>
+
+<!-- ═══════════ THE FRONTIER ═══════════ -->
+<section class="home-section">
+  <a class="frontier-strip" href="frontier.html">
+    <div class="frontier-strip-label"><span class="live-dot"></span> The Frontier</div>
+    <div class="frontier-strip-name">Ethel Caterham</div>
+    <div class="frontier-strip-age" id="frontier-age">116 years</div>
+    <div class="frontier-strip-sub">Currently further into life than any other human · The all-time record falls 2 February 2032, if she holds</div>
+  </a>
+</section>
+
+<!-- ═══════════ FROM THE ARCHIVE ═══════════ -->
+<section class="home-section">
+  <p class="home-section-label">From the archive</p>
+  <div class="featured-list">
+    <a class="entry-card" href="posts/qinshihuang.html">
+      <div class="entry-card-year">210 BC</div>
+      <div>
+        <div class="entry-card-title">Qin Shi Huang</div>
+        <div class="entry-card-desc">The most powerful man alive drank mercury because someone told him it was the key to eternal life.</div>
+      </div>
+    </a>
+    <a class="entry-card" href="posts/alexanderbogdanov.html">
+      <div class="entry-card-year">1928</div>
+      <div>
+        <div class="entry-card-title">Alexander Bogdanov</div>
+        <div class="entry-card-desc">He believed swapping blood with the young would keep him alive forever. His twelfth transfusion killed him.</div>
+      </div>
+    </a>
+    <a class="entry-card" href="posts/jamesbedford.html">
+      <div class="entry-card-year">1967</div>
+      <div>
+        <div class="entry-card-title">James Bedford</div>
+        <div class="entry-card-desc">A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<section class="home-section">
+  <p class="home-section-label">The attempts so far</p>
+  <div class="timeline-wrap">
+    <div class="timeline">
+      <a class="timeline-item" href="posts/gilgamesh.html">
+        <span class="timeline-year">~2700 BC</span>
+        <span class="timeline-name">Gilgamesh</span>
+      </a>
+      <a class="timeline-item" href="posts/qinshihuang.html">
+        <span class="timeline-year">210 BC</span>
+        <span class="timeline-name">Qin Shi Huang</span>
+      </a>
+      <a class="timeline-item" href="posts/luigicornaro.html">
+        <span class="timeline-year">1566</span>
+        <span class="timeline-name">Cornaro</span>
+      </a>
+      <a class="timeline-item" href="posts/condorcet.html">
+        <span class="timeline-year">1794</span>
+        <span class="timeline-name">Condorcet</span>
+      </a>
+      <a class="timeline-item" href="posts/brownsequard.html">
+        <span class="timeline-year">1889</span>
+        <span class="timeline-name">Brown-Séquard</span>
+      </a>
+      <a class="timeline-item" href="posts/eliemetchnikoff.html">
+        <span class="timeline-year">1907</span>
+        <span class="timeline-name">Metchnikoff</span>
+      </a>
+      <a class="timeline-item" href="posts/alexanderbogdanov.html">
+        <span class="timeline-year">1928</span>
+        <span class="timeline-name">Bogdanov</span>
+      </a>
+      <a class="timeline-item" href="posts/jamesbedford.html">
+        <span class="timeline-year">1967</span>
+        <span class="timeline-name">Bedford</span>
+      </a>
+      <a class="timeline-item timeline-now" href="frontier.html">
+        <span class="timeline-year">Now</span>
+        <span class="timeline-name">The Frontier</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section class="home-section">
   <div class="landing-stats">
     <div class="landing-stat">
       <div class="landing-stat-number">~109,000,000,000</div>
@@ -95,8 +187,18 @@
       <div class="landing-stat-label">mortality rate — it has never moved</div>
     </div>
   </div>
-
 </section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <nav>
+    <a href="archive.html">Archive</a>
+    <a href="frontier.html">The Frontier</a>
+    <a href="about.html">About</a>
+    <a href="wherearewenow.html">Where are we now</a>
+  </nav>
+  <p class="site-footer-line">The archive ends when someone wins. Nobody has won.</p>
+</footer>
 
 <script>
 const DEATHS_PER_SECOND = 1.8;
@@ -112,6 +214,27 @@ function updateDeathCount() {
 updateDeathCount();
 setInterval(updateDeathCount, 1000);
 
+// ── Frontier strip: live age of the current record holder ──
+const FRONTIER_BIRTH = new Date('1909-08-21T00:00:00Z');
+
+function updateFrontierAge() {
+  const el = document.getElementById('frontier-age');
+  if (!el) return;
+  const now = new Date();
+  let years = now.getUTCFullYear() - FRONTIER_BIRTH.getUTCFullYear();
+  let anniversary = new Date(Date.UTC(FRONTIER_BIRTH.getUTCFullYear() + years, FRONTIER_BIRTH.getUTCMonth(), FRONTIER_BIRTH.getUTCDate()));
+  if (anniversary > now) {
+    years--;
+    anniversary = new Date(Date.UTC(FRONTIER_BIRTH.getUTCFullYear() + years, FRONTIER_BIRTH.getUTCMonth(), FRONTIER_BIRTH.getUTCDate()));
+  }
+  const days = Math.floor((now - anniversary) / 86400000);
+  el.textContent = years + ' years, ' + days + ' days — and counting';
+}
+
+updateFrontierAge();
+setInterval(updateFrontierAge, 60000);
+
+// ── Logo easter egg ──
 let logoClicks = 0;
 let clickTimeout;
 let eggHasTriggered = false;
@@ -146,11 +269,15 @@ function executeDramaticTransmission() {
 
 function showRandom() {
   fetch('entries.json')
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error('entries.json not found');
+      return r.json();
+    })
     .then(entries => {
       const randomIndex = Math.floor(Math.random() * entries.length);
       window.location.href = entries[randomIndex].file;
-    });
+    })
+    .catch(() => { window.location.href = 'archive.html'; });
 }
 </script>
 
