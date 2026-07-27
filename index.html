@@ -191,7 +191,7 @@ function updateFrontierAge() {
     anniversary = new Date(Date.UTC(FRONTIER_BIRTH.getUTCFullYear() + years, FRONTIER_BIRTH.getUTCMonth(), FRONTIER_BIRTH.getUTCDate()));
   }
   const days = Math.floor((now - anniversary) / 86400000);
-  el.textContent = years + ' years, ' + days + ' days — and counting';
+  el.textContent = years + ' years, ' + days + ' days and counting';
 }
 
 updateFrontierAge();
