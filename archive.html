@@ -3,96 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Archive - The Immortality Archive</title>
-<meta name="description" content="Every entry in The Immortality Archive. 5,000 years of myths, methods, and delusions from those who believed they could cheat death.">
+<title>Archive - The Immortality Archive</title>
+
+<meta name="description" content="Every recorded attempt at immortality, in chronological order. From Gilgamesh to cryonics.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://theimmortalityarchive.com/archive.html">
 <link rel="icon" type="image/png" href="favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Archive - The Immortality Archive">
+<meta property="og:description" content="Every recorded attempt at immortality, in chronological order.">
+<meta property="og:url" content="https://theimmortalityarchive.com/archive.html">
+<meta property="og:site_name" content="The Immortality Archive">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<style>
-  .era-divider {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 2.75rem 0 1.25rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.45;
-  }
-  .era-divider:first-child {
-    margin-top: 0;
-  }
-  .era-divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.3;
-  }
-</style>
 </head>
 <body>
+
 <div id="all-entries">
-  <a href="index.html" class="entry-back">← Back</a>
-  <h2 class="all-entries-title">The Archive</h2>
-  <p class="landing-sub" style="margin-bottom: 0.3rem; max-width: none; opacity: 1; animation: none;">Every documented attempt to escape death, all in one place.</p>
-  <p class="landing-sub" id="entry-count" style="max-width: none; opacity: 1; animation: none;"></p>
+  <a class="entry-back" href="index.html">← Home</a>
+
+  <h1 class="all-entries-title">The full record</h1>
+  <p class="all-entries-count" id="entries-count">Loading…</p>
 
   <div id="entries-list"></div>
+
+  <a class="archive-terminal" href="frontier.html">
+    <div class="frontier-strip-label" style="justify-content:center; display:inline-flex;"><span class="live-dot"></span> Ongoing</div>
+    <div class="archive-terminal-line">The frontier — one person is still further into life than everyone else. For now.</div>
+  </a>
 </div>
+
 <script>
+// Eras are derived from each entry's year, so new entries slot in automatically.
+const ERAS = [
+  { label: 'Antiquity', test: y => y < 500 },
+  { label: 'The Long Experiment · 1500–1800', test: y => y >= 500 && y < 1800 },
+  { label: 'The Age of Science · 1800–1950', test: y => y >= 1800 && y < 1950 },
+  { label: 'The Modern Gamble · 1950–', test: y => y >= 1950 }
+];
+
+function parseYear(str) {
+  const n = parseInt(String(str).replace(/[^0-9-]/g, ''), 10);
+  return /BC/i.test(str) ? -Math.abs(n) : n;
+}
+
 fetch('entries.json')
-  .then(r => r.json())
+  .then(r => {
+    if (!r.ok) throw new Error('entries.json not found');
+    return r.json();
+  })
   .then(entries => {
+    const sorted = entries.slice().sort((a, b) => parseYear(a.year) - parseYear(b.year));
+    document.getElementById('entries-count').textContent =
+      sorted.length + ' recorded attempts · 0 successes';
+
     const list = document.getElementById('entries-list');
-
-    document.getElementById('entry-count').textContent = `${entries.length} stories so far`;
-
-    // Turn a display year ("~2700 BC", "1907") into a sortable number
-    function parseYear(yearStr) {
-      const s = yearStr.replace('~', '').trim();
-      if (s.toUpperCase().includes('BC')) return -Math.abs(parseInt(s));
-      return parseInt(s);
-    }
-
-    // Map a numeric year to an era label
-    function getEra(y) {
-      if (y < 500) return 'Antiquity';
-      if (y < 1400) return 'Medieval';
-      if (y < 1600) return 'Renaissance';
-      if (y < 1800) return 'Enlightenment';
-      return 'Modern';
-    }
-
-    // Sort chronologically so dividers always come out in order
-    const sorted = entries
-      .map(e => ({ ...e, numYear: parseYear(e.year) }))
-      .sort((a, b) => a.numYear - b.numYear);
-
     let currentEra = null;
-    list.innerHTML = sorted.map(e => {
-      const era = getEra(e.numYear);
-      let block = '';
-      if (era !== currentEra) {
-        currentEra = era;
-        block += `<div class="era-divider"><span>${era}</span></div>`;
+
+    sorted.forEach(entry => {
+      const y = parseYear(entry.year);
+      const era = ERAS.find(e => e.test(y));
+      if (era && era.label !== currentEra) {
+        currentEra = era.label;
+        const h = document.createElement('h2');
+        h.className = 'era-header';
+        h.textContent = era.label;
+        list.appendChild(h);
       }
-      block += `
-        <div class="entry-card" onclick="window.location.href='${e.file}'">
-          <div class="entry-card-year">${e.year}</div>
-          <div>
-            <div class="entry-card-title">${e.title}</div>
-            <div class="entry-card-desc">${e.oneliner}</div>
-          </div>
-        </div>`;
-      return block;
-    }).join('');
+
+      const card = document.createElement('a');
+      card.className = 'entry-card';
+      card.href = entry.file;
+
+      const yearEl = document.createElement('div');
+      yearEl.className = 'entry-card-year';
+      yearEl.textContent = entry.year;
+
+      const body = document.createElement('div');
+      const title = document.createElement('div');
+      title.className = 'entry-card-title';
+      title.textContent = entry.title;
+      const desc = document.createElement('div');
+      desc.className = 'entry-card-desc';
+      desc.textContent = entry.oneliner;
+      body.appendChild(title);
+      body.appendChild(desc);
+
+      card.appendChild(yearEl);
+      card.appendChild(body);
+      list.appendChild(card);
+    });
+  })
+  .catch(() => {
+    document.getElementById('entries-count').textContent =
+      'The archive failed to load. Refresh the page to try again.';
   });
 </script>
+
 </body>
 </html>
