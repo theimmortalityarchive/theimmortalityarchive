@@ -126,44 +126,7 @@
 <section class="home-section">
   <p class="home-section-label">The attempts so far</p>
   <div class="timeline-wrap">
-    <div class="timeline">
-      <a class="timeline-item" href="posts/gilgamesh.html">
-        <span class="timeline-year">~2700 BC</span>
-        <span class="timeline-name">Gilgamesh</span>
-      </a>
-      <a class="timeline-item" href="posts/qinshihuang.html">
-        <span class="timeline-year">210 BC</span>
-        <span class="timeline-name">Qin Shi Huang</span>
-      </a>
-      <a class="timeline-item" href="posts/luigicornaro.html">
-        <span class="timeline-year">1566</span>
-        <span class="timeline-name">Cornaro</span>
-      </a>
-      <a class="timeline-item" href="posts/condorcet.html">
-        <span class="timeline-year">1794</span>
-        <span class="timeline-name">Condorcet</span>
-      </a>
-      <a class="timeline-item" href="posts/brownsequard.html">
-        <span class="timeline-year">1889</span>
-        <span class="timeline-name">Brown-Séquard</span>
-      </a>
-      <a class="timeline-item" href="posts/eliemetchnikoff.html">
-        <span class="timeline-year">1907</span>
-        <span class="timeline-name">Metchnikoff</span>
-      </a>
-      <a class="timeline-item" href="posts/alexanderbogdanov.html">
-        <span class="timeline-year">1928</span>
-        <span class="timeline-name">Bogdanov</span>
-      </a>
-      <a class="timeline-item" href="posts/jamesbedford.html">
-        <span class="timeline-year">1967</span>
-        <span class="timeline-name">Bedford</span>
-      </a>
-      <a class="timeline-item timeline-now" href="frontier.html">
-        <span class="timeline-year">Now</span>
-        <span class="timeline-name">The Frontier</span>
-      </a>
-    </div>
+    <div class="timeline" id="timeline"></div>
   </div>
 </section>
 
@@ -233,6 +196,52 @@ function updateFrontierAge() {
 
 updateFrontierAge();
 setInterval(updateFrontierAge, 60000);
+
+// ── Timeline: built from entries.json ──
+// Add an entry to entries.json and it appears here automatically,
+// sorted by year. Optional "short" field in the JSON overrides the
+// name shown under the dot (useful for long names).
+function parseYear(str) {
+  const n = parseInt(String(str).replace(/[^0-9-]/g, ''), 10);
+  return /BC/i.test(str) ? -Math.abs(n) : n;
+}
+
+function buildTimelineItem(href, year, name, isNow) {
+  const a = document.createElement('a');
+  a.className = 'timeline-item' + (isNow ? ' timeline-now' : '');
+  a.href = href;
+  const y = document.createElement('span');
+  y.className = 'timeline-year';
+  y.textContent = year;
+  const n = document.createElement('span');
+  n.className = 'timeline-name';
+  n.textContent = name;
+  a.appendChild(y);
+  a.appendChild(n);
+  return a;
+}
+
+fetch('entries.json')
+  .then(r => {
+    if (!r.ok) throw new Error('entries.json not found');
+    return r.json();
+  })
+  .then(entries => {
+    const timeline = document.getElementById('timeline');
+    entries
+      .slice()
+      .sort((a, b) => parseYear(a.year) - parseYear(b.year))
+      .forEach(e => {
+        timeline.appendChild(buildTimelineItem(e.file, e.year, e.short || e.title, false));
+      });
+    timeline.appendChild(buildTimelineItem('frontier.html', 'Now', 'The Frontier', true));
+  })
+  .catch(() => {
+    // If the JSON is unreachable, the timeline still points somewhere useful
+    const timeline = document.getElementById('timeline');
+    timeline.appendChild(buildTimelineItem('archive.html', '5,000 yrs', 'The Archive', false));
+    timeline.appendChild(buildTimelineItem('frontier.html', 'Now', 'The Frontier', true));
+  });
 
 // ── Logo easter egg ──
 let logoClicks = 0;
