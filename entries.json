@@ -15,36 +15,42 @@
     "file": "posts/luigicornaro.html",
     "year": "1566",
     "title": "Luigi Cornaro",
-    "oneliner": "A dying aristocrat stripped his diet to almost nothing and lived to nearly 100, then wrote books telling everyone else to do the same."
+    "oneliner": "A dying aristocrat stripped his diet to almost nothing and lived to nearly 100, then wrote books telling everyone else to do the same.",
+    "short": "Cornaro"
   },
   {
     "file": "posts/condorcet.html",
     "year": "1794",
     "title": "Marie Jean Condorcet",
-    "oneliner": "He wrote humanity's case for immortality while hiding from a death warrant. Two days after being caught, he was dead."
+    "oneliner": "He wrote humanity's case for immortality while hiding from a death warrant. Two days after being caught, he was dead.",
+    "short": "Condorcet"
   },
   {
     "file": "posts/brownsequard.html",
     "year": "1889",
     "title": "Charles-Édouard Brown-Séquard",
-    "oneliner": "One of the founders of endocrinology injected himself with animal testicles to feel young again. It was placebo."
+    "oneliner": "One of the founders of endocrinology injected himself with animal testicles to feel young again. It was placebo.",
+    "short": "Brown-Séquard"
   },
   {
     "file": "posts/eliemetchnikoff.html",
     "year": "1907",
     "title": "Elie Metchnikoff",
-    "oneliner": "He said we should live to 150. His own heart killed him at 71."
+    "oneliner": "He said we should live to 150. His own heart killed him at 71.",
+    "short": "Metchnikoff"
   },
   {
     "file": "posts/alexanderbogdanov.html",
     "year": "1928",
     "title": "Alexander Bogdanov",
-    "oneliner": "He believed swapping blood with the young would keep him alive forever. His twelfth transfusion killed him."
+    "oneliner": "He believed swapping blood with the young would keep him alive forever. His twelfth transfusion killed him.",
+    "short": "Bogdanov"
   },
   {
     "file": "posts/jamesbedford.html",
     "year": "1967",
     "title": "James Bedford",
-    "oneliner": "A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up."
+    "oneliner": "A dying professor bet everything on being frozen, and 59 years later he is still waiting to wake up.",
+    "short": "Bedford"
   }
 ]
